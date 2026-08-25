@@ -35,7 +35,8 @@ export function ConnectButton({
   connectedAction?: "menu" | "disconnect" | "custom";
   onConnectedClick?: () => void;
 }) {
-  const { ready, authenticated, address, email, connect, disconnect, available } = useWallet();
+  const { ready, authenticated, address, email, connect, disconnect, available, openProfile } =
+    useWallet();
   const [sheetOpen, setSheetOpen] = useState(false);
 
 
@@ -63,6 +64,7 @@ export function ConnectButton({
     }
     if (connectedAction === "disconnect") disconnect();
     else if (connectedAction === "custom") onConnectedClick?.();
+    else if (openProfile) openProfile();
     else setSheetOpen(true);
   }
 

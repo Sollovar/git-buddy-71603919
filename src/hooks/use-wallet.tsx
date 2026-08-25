@@ -14,6 +14,8 @@ export type WalletState = {
   /** False when no Privy app id is configured yet. */
   available: boolean;
   /** Account actions surfaced in the wallet sheet (no-ops before Privy loads). */
+  /** Opens Dynamic's own account / wallet menu widget. */
+  openProfile: () => void;
   linkEmail: () => void;
   linkWallet: () => void;
   exportWallet: () => void;
@@ -30,6 +32,7 @@ export const WalletContext = createContext<WalletState>({
   connect: () => {},
   disconnect: () => {},
   available: false,
+  openProfile: () => {},
   linkEmail: () => {},
   linkWallet: () => {},
   exportWallet: () => {},
