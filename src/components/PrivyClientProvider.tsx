@@ -52,6 +52,7 @@ const PrivyBridge = lazy(async () => {
         connect: login,
         disconnect: logout,
         available: true,
+        openProfile: () => {},
         linkEmail,
         linkWallet,
         exportWallet: () => void exportWallet(),
