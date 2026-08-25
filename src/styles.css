@@ -59,43 +59,109 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-bid: var(--bid);
+  --color-bid-fill: var(--bid-fill);
+  --color-ask: var(--ask);
+  --color-ask-fill: var(--ask-fill);
+  --color-ink: var(--ink);
+  --color-ink-elevated: var(--ink-elevated);
+  --color-ink-foreground: var(--ink-foreground);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-border: var(--ink-border);
+  --color-sand: var(--sand);
 }
 
+
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --radius: 0.75rem;
+  /* Warm cream design system (Aster DEX replica) */
+  --background: oklch(0.9185 0.0248 68.5); /* #F0E2D3 outer padding */
+  --foreground: oklch(0.2795 0.0225 62);
+  --card: oklch(0.9735 0.0165 79); /* #FFF5E9 surface */
+  --card-foreground: oklch(0.2795 0.0225 62);
+  --popover: oklch(0.9735 0.0165 79);
+  --popover-foreground: oklch(0.2795 0.0225 62);
+  --primary: oklch(0.8375 0.0575 72); /* tan CTA */
+  --primary-foreground: oklch(0.2795 0.0225 62);
+  --secondary: oklch(0.9455 0.019 73); /* #F7EBE0 inner tiles */
+  --secondary-foreground: oklch(0.2795 0.0225 62);
+  --muted: oklch(0.9455 0.019 73);
+  --muted-foreground: oklch(0.555 0.024 62);
+  --accent: oklch(0.9 0.03 70);
+  --accent-foreground: oklch(0.2795 0.0225 62);
+  --destructive: oklch(0.575 0.198 25.5);
+  --destructive-foreground: oklch(0.98 0.005 80);
+  --border: oklch(0.888 0.026 70);
+  --input: oklch(0.888 0.026 70);
+  --ring: oklch(0.78 0.06 70);
+  /* market colors */
+  --bid: oklch(0.535 0.125 155);
+  --bid-fill: oklch(0.905 0.055 155);
+  --ask: oklch(0.575 0.198 25.5);
+  --ask-fill: oklch(0.905 0.05 25.5);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
+  --sidebar: oklch(0.9735 0.0165 79);
+  --sidebar-foreground: oklch(0.2795 0.0225 62);
+  --sidebar-primary: oklch(0.8375 0.0575 72);
+  --sidebar-primary-foreground: oklch(0.2795 0.0225 62);
+  --sidebar-accent: oklch(0.9455 0.019 73);
+  --sidebar-accent-foreground: oklch(0.2795 0.0225 62);
+  --sidebar-border: oklch(0.888 0.026 70);
+  --sidebar-ring: oklch(0.78 0.06 70);
+  /* warm light UI cards presented on the cream page */
+  --ink: oklch(0.9905 0.0075 80);
+  --ink-elevated: oklch(0.9585 0.017 72);
+  --ink-foreground: oklch(0.2795 0.0225 62);
+  --ink-muted: oklch(0.532 0.021 66);
+  --ink-border: oklch(0.898 0.024 70);
+  --sand: oklch(0.9185 0.0248 68.5);
+
 }
+
+/* Light mode: clean neutral white/grey theme */
+.theme-light {
+  --background: oklch(0.968 0.002 260);
+  --foreground: oklch(0.21 0.01 260);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.21 0.01 260);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.21 0.01 260);
+  --primary: oklch(0.8375 0.0575 72); /* tan CTA */
+  --primary-foreground: oklch(0.2795 0.0225 62);
+  --secondary: oklch(0.955 0.003 260);
+  --secondary-foreground: oklch(0.21 0.01 260);
+  --muted: oklch(0.955 0.003 260);
+  --muted-foreground: oklch(0.55 0.015 260);
+  --accent: oklch(0.945 0.006 260);
+  --accent-foreground: oklch(0.21 0.01 260);
+  --border: oklch(0.905 0.005 260);
+  --input: oklch(0.905 0.005 260);
+  --ring: oklch(0.78 0.06 70);
+  --bid: oklch(0.55 0.13 155);
+  --bid-fill: oklch(0.935 0.045 155);
+  --ask: oklch(0.575 0.198 25.5);
+  --ask-fill: oklch(0.935 0.04 25.5);
+  --sidebar: oklch(1 0 0);
+  --sidebar-foreground: oklch(0.21 0.01 260);
+  --sidebar-primary: oklch(0.8375 0.0575 72);
+  --sidebar-primary-foreground: oklch(0.2795 0.0225 62);
+  --sidebar-accent: oklch(0.955 0.003 260);
+  --sidebar-accent-foreground: oklch(0.21 0.01 260);
+  --sidebar-border: oklch(0.905 0.005 260);
+  --sidebar-ring: oklch(0.78 0.06 70);
+  /* neutral card surfaces so the landing page follows light mode too */
+  --ink: oklch(1 0 0);
+  --ink-elevated: oklch(0.972 0.002 260);
+  --ink-foreground: oklch(0.21 0.01 260);
+  --ink-muted: oklch(0.55 0.015 260);
+  --ink-border: oklch(0.905 0.005 260);
+  --sand: oklch(0.955 0.003 260);
+}
+
 
 .dark {
   --background: oklch(0.129 0.042 264.695);
@@ -140,5 +206,364 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+  }
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/*
+ * Aster DEX typography: no webfont, they use the native system UI stack with
+ * tabular figures for every price / amount readout.
+ */
+@theme inline {
+  --font-sans:
+    -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu,
+    "Helvetica Neue", sans-serif;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    font-feature-settings: "tnum" 1;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Numeric readouts: same family as text, but locked to tabular figures. */
+@utility font-num {
+  font-family: var(--font-sans);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+  letter-spacing: 0;
+}
+
+/* Continuous right-to-left ticker used by the bottom status bar and partner logos. */
+@keyframes marquee-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@utility animate-marquee {
+  animation: marquee-x var(--marquee-duration, 40s) linear infinite;
+}
+
+/* Partner logo marquee: seamless loop of duplicated logo sets. */
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+
+/* ---- Desktop trading terminal tokens (dex UI) ---- */
+:root {
+  --panel: oklch(0.9455 0.019 73);
+  --panel-2: oklch(0.9185 0.0248 68.5);
+  --up: oklch(0.535 0.125 155);
+  --up-soft: oklch(0.535 0.125 155 / 0.14);
+  --down: oklch(0.575 0.198 25.5);
+  --down-soft: oklch(0.575 0.198 25.5 / 0.14);
+  --gold: oklch(0.8375 0.0575 72);
+  --gold-strong: oklch(0.7625 0.0625 70);
+  --gradient-gold: linear-gradient(90deg, oklch(0.8375 0.0575 72), oklch(0.8375 0.0575 72));
+  --shadow-panel: 0 1px 2px oklch(0.4 0.04 60 / 0.06);
+}
+
+.theme-light {
+  --panel: oklch(0.955 0.003 260);
+  --panel-2: oklch(0.968 0.002 260);
+  --up: oklch(0.55 0.13 155);
+  --up-soft: oklch(0.55 0.13 155 / 0.14);
+  --down: oklch(0.575 0.198 25.5);
+  --down-soft: oklch(0.575 0.198 25.5 / 0.14);
+}
+
+@theme inline {
+  --color-panel: var(--panel);
+  --color-panel-2: var(--panel-2);
+  --color-up: var(--up);
+  --color-down: var(--down);
+  --color-gold: var(--gold);
+  --color-gold-strong: var(--gold-strong);
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@keyframes ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* Original dex terminal palette, scoped to the desktop terminal only. */
+.dex-root {
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: normal;
+  --radius: 0.5rem;
+  --background: oklch(0.9723 0.0189 76.5);
+  --foreground: oklch(0.235 0.014 60);
+  --card: oklch(0.9832 0.0128 78);
+  --card-foreground: oklch(0.235 0.014 60);
+  --popover: oklch(0.9832 0.0128 78);
+  --popover-foreground: oklch(0.235 0.014 60);
+  --primary: oklch(0.8375 0.0575 72);
+  --primary-foreground: oklch(0.2795 0.0225 62);
+  --secondary: oklch(0.9445 0.0186 70);
+  --secondary-foreground: oklch(0.3 0.02 60);
+  --muted: oklch(0.9445 0.0186 70);
+  --muted-foreground: oklch(0.545 0.025 62);
+  --accent: oklch(0.915 0.0265 70);
+  --accent-foreground: oklch(0.28 0.02 60);
+  --border: oklch(0.902 0.023 70);
+  --input: oklch(0.902 0.023 70);
+  --ring: oklch(0.82 0.06 76);
+  --panel: oklch(0.9445 0.0186 70);
+  --panel-2: oklch(0.915 0.0265 70);
+  --up: oklch(0.545 0.128 155);
+  --up-soft: oklch(0.545 0.128 155 / 0.14);
+  --down: oklch(0.555 0.185 26);
+  --down-soft: oklch(0.555 0.185 26 / 0.14);
+  --gold: oklch(0.8375 0.0575 72);
+  --gold-strong: oklch(0.7625 0.0625 70);
+  --gradient-gold: linear-gradient(90deg, oklch(0.8375 0.0575 72), oklch(0.8375 0.0575 72));
+  --shadow-panel: 0 1px 2px oklch(0.4 0.04 60 / 0.06);
+}
+
+/* Light mode for the desktop terminal: neutral white/grey surfaces. */
+.theme-light .dex-root {
+  --background: oklch(0.968 0.002 260);
+  --foreground: oklch(0.21 0.01 260);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.21 0.01 260);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.21 0.01 260);
+  --primary: oklch(0.8375 0.0575 72);
+  --primary-foreground: oklch(0.2795 0.0225 62);
+  --secondary: oklch(0.955 0.003 260);
+  --secondary-foreground: oklch(0.21 0.01 260);
+  --muted: oklch(0.955 0.003 260);
+  --muted-foreground: oklch(0.52 0.014 260);
+  --accent: oklch(0.945 0.006 260);
+  --accent-foreground: oklch(0.21 0.01 260);
+  --border: oklch(0.905 0.005 260);
+  --input: oklch(0.905 0.005 260);
+  --ring: oklch(0.82 0.06 76);
+  --panel: oklch(0.976 0.002 260);
+  --panel-2: oklch(0.945 0.003 260);
+  --up: oklch(0.55 0.13 155);
+  --up-soft: oklch(0.55 0.13 155 / 0.14);
+  --down: oklch(0.575 0.198 25.5);
+  --down-soft: oklch(0.575 0.198 25.5 / 0.14);
+  --shadow-panel: 0 1px 2px oklch(0.2 0 0 / 0.07);
+}
+
+
+/* ================= Vellum landing page design tokens ================= */
+:root {
+  --cream: oklch(0.975 0.014 88);
+  --sand-deep: oklch(0.855 0.038 78);
+  --bronze: oklch(0.72 0.09 65);
+  --bronze-foreground: oklch(0.2 0.02 65);
+  --gradient-sand: linear-gradient(
+    170deg,
+    oklch(0.945 0.026 86) 0%,
+    oklch(0.905 0.031 82.5) 45%,
+    oklch(0.87 0.036 78) 100%
+  );
+  --gradient-cream: linear-gradient(
+    145deg,
+    oklch(0.985 0.01 90 / 0.95),
+    oklch(0.96 0.018 86 / 0.75)
+  );
+  --shadow-soft: 0 1px 2px oklch(0.4 0.03 70 / 0.06), 0 12px 32px -12px oklch(0.4 0.03 70 / 0.22);
+  --shadow-lift: 0 2px 4px oklch(0.4 0.03 70 / 0.08), 0 32px 64px -24px oklch(0.4 0.03 70 / 0.32);
+  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-mono-num: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* Landing page in light mode: neutral white/grey surfaces. */
+.theme-light {
+  --cream: oklch(0.985 0 0);
+  --sand-deep: oklch(0.9 0.003 260);
+  --bronze: oklch(0.72 0.09 65);
+  --gradient-sand: linear-gradient(
+    170deg,
+    oklch(0.995 0 0) 0%,
+    oklch(0.975 0.002 260) 45%,
+    oklch(0.945 0.004 260) 100%
+  );
+  --gradient-cream: linear-gradient(
+    145deg,
+    oklch(1 0 0 / 0.95),
+    oklch(0.975 0.002 260 / 0.8)
+  );
+  --shadow-soft: 0 1px 2px oklch(0.2 0 0 / 0.05), 0 12px 32px -12px oklch(0.2 0 0 / 0.14);
+  --shadow-lift: 0 2px 4px oklch(0.2 0 0 / 0.07), 0 32px 64px -24px oklch(0.2 0 0 / 0.2);
+}
+
+@theme inline {
+  --color-cream: var(--cream);
+  --color-sand-deep: var(--sand-deep);
+  --color-bronze: var(--bronze);
+  --color-bronze-foreground: var(--bronze-foreground);
+  --font-display: var(--font-display);
+  --shadow-soft: var(--shadow-soft);
+  --shadow-lift: var(--shadow-lift);
+}
+
+/* Landing shell: scoped so the trading terminal keeps its own typography. */
+.landing-shell {
+  background-image: var(--gradient-sand);
+  background-attachment: fixed;
+  font-family: var(--font-body);
+}
+
+.landing-shell h1,
+.landing-shell h2,
+.landing-shell h3,
+.landing-shell h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.025em;
+}
+
+@utility glass-cream {
+  background-image: var(--gradient-cream);
+  backdrop-filter: blur(14px);
+  border: 1px solid oklch(1 0 0 / 0.6);
+  box-shadow: var(--shadow-soft);
+}
+
+@utility tabular {
+  font-family: var(--font-mono-num);
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(1.5deg);
+  }
+}
+
+@keyframes shimmer-sweep {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(220%);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+
+@utility float-slow {
+  animation: float-slow 9s ease-in-out infinite;
+}
+
+@utility shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+@utility pulse-ring {
+  animation: pulse-ring 2.2s ease-out infinite;
+}
+
+@keyframes orbit {
+  from {
+    transform: rotate(0deg) translateX(var(--orbit-radius)) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(var(--orbit-radius)) rotate(-360deg);
+  }
+}
+
+@keyframes orbit-counter {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.orbit-spin {
+  animation-name: orbit-counter;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit-spin {
+    animation-play-state: paused;
+  }
+}
+
+@utility coin-doge {
+  background: linear-gradient(145deg, oklch(0.93 0.09 92), oklch(0.84 0.12 88));
+  color: oklch(0.3 0.05 80);
+}
+
+@utility coin-pepe {
+  background: linear-gradient(145deg, oklch(0.9 0.09 145), oklch(0.78 0.13 148));
+  color: oklch(0.28 0.05 150);
+}
+
+@utility coin-shib {
+  background: linear-gradient(145deg, oklch(0.9 0.08 45), oklch(0.78 0.14 38));
+  color: oklch(0.28 0.05 40);
+}
+
+@utility coin-bonk {
+  background: linear-gradient(145deg, oklch(0.93 0.07 70), oklch(0.82 0.12 62));
+  color: oklch(0.28 0.05 60);
+}
+
+@utility coin-wif {
+  background: linear-gradient(145deg, oklch(0.92 0.05 30), oklch(0.8 0.09 24));
+  color: oklch(0.28 0.04 30);
+}
+
+@utility coin-floki {
+  background: linear-gradient(145deg, oklch(0.92 0.06 250), oklch(0.79 0.1 255));
+  color: oklch(0.28 0.05 258);
+}
+
+@utility coin-brett {
+  background: linear-gradient(145deg, oklch(0.92 0.06 215), oklch(0.79 0.11 225));
+  color: oklch(0.28 0.05 230);
+}
+
+@keyframes retro-grid-scroll {
+  to {
+    transform: translateY(calc(var(--retro-grid-cell) * 1px));
   }
 }
