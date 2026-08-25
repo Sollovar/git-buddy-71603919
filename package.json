@@ -12,6 +12,9 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@dynamic-labs/ethereum": "^5.3.2",
+    "@dynamic-labs/sdk-react-core": "^5.3.2",
+    "@dynamic-labs/wallet-connector-core": "^5.3.2",
     "@hookform/resolvers": "^5.2.2",
     "@privy-io/react-auth": "^3.36.0",
     "@radix-ui/react-accordion": "^1.2.12",
