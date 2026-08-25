@@ -1,5 +1,5 @@
 import { ClientOnly } from "@tanstack/react-router";
-import { Suspense, lazy, useMemo, useState, type ReactNode } from "react";
+import { Suspense, lazy, useEffect, useMemo, type ReactNode } from "react";
 
 import { DYNAMIC_ENVIRONMENT_ID, isWalletConfigured } from "@/lib/wallet";
 import { WalletContext, type WalletState } from "@/hooks/use-wallet";
@@ -10,29 +10,35 @@ import { WalletContext, type WalletState } from "@/hooks/use-wallet";
  * used, which reports `ready: false` and renders the UI in its disconnected
  * state — no hook-order or hydration mismatch.
  *
- * The integration is fully headless: no DynamicWidget / Dynamic modal is
- * rendered anywhere. All UI lives in our own components (ConnectSheet,
- * AccountSheet, ConnectButton) and only Dynamic's hooks are used.
+ * We use Dynamic's own widget UI (auth flow modal, wallet menu, user profile)
+ * and only remap its design tokens to our colors via `cssOverrides`.
  */
 const DynamicBridge = lazy(async () => {
   const [
     { DynamicContextProvider, useDynamicContext, useEmbeddedReveal, useIsLoggedIn, useUserWallets },
     { EthereumWalletConnectors },
-    { ConnectSheet },
+    { dynamicCssOverrides, syncDynamicThemeVars },
     { toast },
   ] = await Promise.all([
     import("@dynamic-labs/sdk-react-core"),
     import("@dynamic-labs/ethereum"),
-    import("@/components/wallet/ConnectSheet"),
+    import("@/components/wallet/dynamic-theme"),
     import("sonner"),
   ]);
 
   function Bridge({ children }: { children: ReactNode }) {
-    const { sdkHasLoaded, primaryWallet, user, handleLogOut } = useDynamicContext();
+    const {
+      sdkHasLoaded,
+      primaryWallet,
+      user,
+      handleLogOut,
+      setShowAuthFlow,
+      setShowDynamicUserProfile,
+      setShowLinkNewWalletModal,
+    } = useDynamicContext();
     const { initExportProcess } = useEmbeddedReveal();
     const isLoggedIn = useIsLoggedIn();
     const wallets = useUserWallets();
-    const [connectOpen, setConnectOpen] = useState(false);
 
     const value = useMemo<WalletState>(() => {
       const address = primaryWallet?.address ?? wallets[0]?.address ?? null;
@@ -46,12 +52,12 @@ const DynamicBridge = lazy(async () => {
         authenticated: Boolean(isLoggedIn && (address || user?.email)),
         address,
         email: user?.email ?? null,
-        connect: () => setConnectOpen(true),
+        connect: () => setShowAuthFlow(true),
         disconnect: () => void handleLogOut(),
         available: true,
-        // Linking more accounts reuses the same headless connect sheet.
-        linkEmail: () => setConnectOpen(true),
-        linkWallet: () => setConnectOpen(true),
+        openProfile: () => setShowDynamicUserProfile(true),
+        linkEmail: () => setShowDynamicUserProfile(true),
+        linkWallet: () => setShowLinkNewWalletModal(true),
         exportWallet: () => void initExportProcess(),
         fundWallet: () => {
           toast.info("On-ramp coming soon", {
@@ -60,23 +66,38 @@ const DynamicBridge = lazy(async () => {
         },
         isEmbedded,
       };
-    }, [sdkHasLoaded, isLoggedIn, primaryWallet, wallets, user, handleLogOut, initExportProcess]);
+    }, [
+      sdkHasLoaded,
+      isLoggedIn,
+      primaryWallet,
+      wallets,
+      user,
+      handleLogOut,
+      initExportProcess,
+      setShowAuthFlow,
+      setShowDynamicUserProfile,
+      setShowLinkNewWalletModal,
+    ]);
 
-    return (
-      <WalletContext.Provider value={value}>
-        {children}
-        <ConnectSheet open={connectOpen} onClose={() => setConnectOpen(false)} />
-      </WalletContext.Provider>
-    );
+    return <WalletContext.Provider value={value}>{children}</WalletContext.Provider>;
   }
 
   function Provider({ children }: { children: ReactNode }) {
+    useEffect(() => {
+      syncDynamicThemeVars();
+      const observer = new MutationObserver(() => syncDynamicThemeVars());
+      observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+      return () => observer.disconnect();
+    }, []);
+
     return (
       <DynamicContextProvider
+        theme="light"
         settings={{
           environmentId: DYNAMIC_ENVIRONMENT_ID,
           walletConnectors: [EthereumWalletConnectors],
           initialAuthenticationMode: "connect-and-sign",
+          cssOverrides: dynamicCssOverrides,
           events: {
             onLogout: () => {
               toast.success("Wallet disconnected");
