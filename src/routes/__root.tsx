@@ -12,7 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import "../styles.css";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { PrivyClientProvider } from "@/components/PrivyClientProvider";
+import { DynamicClientProvider } from "@/components/DynamicClientProvider";
 import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
@@ -135,11 +135,11 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <PrivyClientProvider>
+      <DynamicClientProvider>
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
         <Toaster />
-      </PrivyClientProvider>
+      </DynamicClientProvider>
     </QueryClientProvider>
   );
 }
