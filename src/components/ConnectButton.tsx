@@ -4,7 +4,7 @@ import { toast } from "sonner";
 
 import { AccountSheet } from "@/components/AccountSheet";
 import { useWallet } from "@/hooks/use-wallet";
-import { isPrivyConfigured, shortAddress } from "@/lib/privy";
+import { isWalletConfigured, shortAddress } from "@/lib/wallet";
 import { cn } from "@/lib/utils";
 
 type Variant = "pill" | "block";
@@ -50,9 +50,9 @@ export function ConnectButton({
   const withIcon = showIcon ?? variant === "block";
 
   function handleClick() {
-    if (!isPrivyConfigured) {
-      toast.error("Privy is not set up yet", {
-        description: "Add your Privy App ID in src/lib/privy.ts to enable wallet connect.",
+    if (!isWalletConfigured) {
+      toast.error("Wallet is not set up yet", {
+        description: "Add your Dynamic environment ID in src/lib/wallet.ts to enable wallet connect.",
       });
       return;
     }
@@ -71,7 +71,7 @@ export function ConnectButton({
       <button
         type="button"
         onClick={handleClick}
-        disabled={isPrivyConfigured && available && !ready}
+        disabled={isWalletConfigured && available && !ready}
         aria-label={authenticated ? "Open wallet menu" : "Connect wallet"}
         className={cn(
           styles[variant],

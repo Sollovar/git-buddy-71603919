@@ -3,7 +3,7 @@ import { ChevronRight, Wallet, History, Users, Settings, Bell, ShieldCheck } fro
 import { BottomNav } from "@/components/BottomNav";
 import { ConnectButton } from "@/components/ConnectButton";
 import { useWallet } from "@/hooks/use-wallet";
-import { shortAddress } from "@/lib/privy";
+import { shortAddress } from "@/lib/wallet";
 
 export const Route = createFileRoute("/account")({
   head: () => ({

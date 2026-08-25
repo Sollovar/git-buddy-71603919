@@ -2,11 +2,11 @@ import { Copy, ExternalLink, KeyRound, LogOut, Mail, Plus, Wallet } from "lucide
 import { toast } from "sonner";
 
 import { useWallet } from "@/hooks/use-wallet";
-import { shortAddress } from "@/lib/privy";
+import { shortAddress } from "@/lib/wallet";
 
 /**
  * Bottom sheet shown when the connected address in the header is tapped.
- * Surfaces the Privy account actions (link, fund, export, disconnect).
+ * Surfaces the wallet account actions (link, fund, export, disconnect).
  */
 export function AccountSheet({ open, onClose }: { open: boolean; onClose: () => void }) {
   const {
@@ -77,7 +77,7 @@ export function AccountSheet({ open, onClose }: { open: boolean; onClose: () => 
               {address ? shortAddress(address) : (email ?? "Connected")}
             </p>
             <p className="text-xs text-muted-foreground">
-              {isEmbedded ? "Privy embedded wallet" : "External wallet"}
+              {isEmbedded ? "Embedded wallet" : "External wallet"}
             </p>
           </div>
           <button
