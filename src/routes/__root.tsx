@@ -10,7 +10,10 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import "../styles.css";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { PrivyClientProvider } from "@/components/PrivyClientProvider";
+import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
@@ -76,22 +79,35 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   head: () => ({
     meta: [
       { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      {
+        name: "viewport",
+        content: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no",
+      },
+      { title: "Aster Perp Trading — BTCUSDT Order Book & Limit Orders" },
+      { name: "description", content: "Mobile perpetual futures trading interface for BTCUSDT: live order book, cross margin, 20x leverage and limit orders." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "Aster Perp Trading — BTCUSDT Order Book & Limit Orders" },
+      { property: "og:description", content: "Mobile perpetual futures trading interface for BTCUSDT: live order book, cross margin, 20x leverage and limit orders." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Aster Perp Trading — BTCUSDT Order Book & Limit Orders" },
+      { name: "twitter:description", content: "Mobile perpetual futures trading interface for BTCUSDT: live order book, cross margin, 20x leverage and limit orders." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e5c6c9cd-8834-4e56-9b26-8cfcaaa88039/id-preview-69c54132--99ce4661-c2b5-4f96-b124-5bf7eec96a26.lovable.app-1785613682269.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e5c6c9cd-8834-4e56-9b26-8cfcaaa88039/id-preview-69c54132--99ce4661-c2b5-4f96-b124-5bf7eec96a26.lovable.app-1785613682269.png" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Sora:wght@400;500;600;700&family=Manrope:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap",
+      },
+      { rel: "icon", type: "image/png", href: "/favicon.png" },
     ],
   }),
   shellComponent: RootShell,
@@ -119,8 +135,11 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <PrivyClientProvider>
+        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+        <Outlet />
+        <Toaster />
+      </PrivyClientProvider>
     </QueryClientProvider>
   );
 }
