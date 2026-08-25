@@ -15,7 +15,7 @@ import { WalletContext, type WalletState } from "@/hooks/use-wallet";
  */
 const DynamicBridge = lazy(async () => {
   const [
-    { DynamicContextProvider, useDynamicContext, useEmbeddedReveal, useIsLoggedIn, useUserWallets },
+    { DynamicContextProvider, useDynamicContext, useEmbeddedReveal, useDynamicModals, useIsLoggedIn, useUserWallets },
     { EthereumWalletConnectors },
     { dynamicCssOverrides, syncDynamicThemeVars },
     { toast },
@@ -34,8 +34,8 @@ const DynamicBridge = lazy(async () => {
       handleLogOut,
       setShowAuthFlow,
       setShowDynamicUserProfile,
-      setShowLinkNewWalletModal,
     } = useDynamicContext();
+    const { setShowLinkNewWalletModal } = useDynamicModals();
     const { initExportProcess } = useEmbeddedReveal();
     const isLoggedIn = useIsLoggedIn();
     const wallets = useUserWallets();
