@@ -11,7 +11,31 @@ export const dynamicCssOverrides = `
   .dynamic-shadow-dom-content,
   .dynamic-widget-card,
   .dynamic-widget-inline-controls {
-    --dynamic-font-family-primary: var(--dynamic-font-family-numbers, inherit);
+    --dynamic-font-family-primary:
+      -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu,
+      "Helvetica Neue", sans-serif;
+    --dynamic-font-family-numbers:
+      -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu,
+      "Helvetica Neue", sans-serif;
+    font-family: var(--dynamic-font-family-primary);
+    font-feature-settings: normal;
+    font-variant: normal;
+    font-variant-ligatures: none;
+    text-transform: none;
+  }
+
+  .dynamic-shadow-dom-content *,
+  .dynamic-widget-card *,
+  .dynamic-widget-inline-controls * {
+    font-family: var(--dynamic-font-family-primary) !important;
+    font-feature-settings: normal !important;
+    font-variant: normal !important;
+    font-variant-ligatures: none !important;
+  }
+
+  .dynamic-shadow-dom-content,
+  .dynamic-widget-card,
+  .dynamic-widget-inline-controls {
 
     --dynamic-base-1: var(--app-card);
     --dynamic-base-2: var(--app-secondary);
